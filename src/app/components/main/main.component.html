@@ -1,0 +1,83 @@
+<!-- Dashboard Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="font-family: Josefin Sans;">
+
+    <a class="navbar-brand" routerLink="/">
+        <img src="assets\images\logo.png">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <hr>
+        <b>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><b>Welcome {{name}}</b></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-dark" routerLink="" (click)="logOut()">Log Out</a>
+                </li>
+
+            </ul>
+        </b>
+    </div>
+</nav>
+<!-- End of Navbar -->
+
+<hr>
+
+<div class="animated" style="font-family: Josefin Sans;">
+
+    <!-- Functionalities Section -->
+    <div class="row no-gutters">
+        <div class="col-lg-3 col-md-3">
+
+            <img src="assets/images/profilepic.jpg" width="250" height="250" style="margin-left: 5%;">
+            <div class="offset-2 x">
+                <a routerLink="" (click)="showDashboard()" class="x"><i class="fa fa-dashboard"></i>&nbsp;&nbsp;
+                    <b> Dashboard</b></a>
+                <hr class="w-50" style="margin-left: 0%">
+                <a routerLink="" (click)="addMoney()" class="x"><i class="fa fa-credit-card"></i>&nbsp;&nbsp;
+                    <b>Add Money</b></a>
+                <hr class="w-50" style="margin-left: 0%">
+                <a routerLink="" (click)="showLoans()" class="x"><i class="fa fa-university"></i>&nbsp;&nbsp;
+                    <b>My Loans</b></a>
+                <hr class="w-50" style="margin-left: 0%">
+                <a routerLink="" (click)="showTrans()" class="x"><i class="fa fa-google-wallet"></i>&nbsp;&nbsp;
+                    <b> Show
+                        Transactions</b></a>
+                <hr class="w-50" style="margin-left: 0%">
+                <a routerLink="" (click)="showEdit()" class="x"><i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;
+                    <b> Update
+                        Profile</b></a>
+
+
+                <hr class="w-50" style="margin-left: 0%">
+
+            </div>
+        </div>
+        <!-- End of Functionalities Section -->
+
+        <!-- Router-Outlet -->
+        <div class="col-lg-9 col-md-9 my-5 ">
+            <router-outlet></router-outlet>
+        </div>
+        <!--  -->
+
+    </div>
+</div>
+<!-- Footer -->
+<div class="footer pt-1" style="height: 45px;bottom:0;width: 100%;">
+    <app-footer></app-footer>
+</div>
+<!-- End of Footer -->
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading> 

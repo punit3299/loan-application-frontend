@@ -1,0 +1,46 @@
+<div class="row container-fluid animated">
+  <div class="col-lg-10 offset-lg-1">
+
+    <!-- Success message -->
+    <div *ngIf="addMessage" class="alert alert-success text-center" role="alert">
+      {{addMessage}}
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header">
+        <h4 class="text-center"><b>My Wallet</b></h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-5">
+            <img src="/assets/images/add.png" class="img-fluid h-auto">
+          </div>
+          <div class="col-lg-6 col-md-7 pt-2">
+
+            <!-- Add money form -->
+            <form [formGroup]="addMoneyForm" (ngSubmit)="addMoney()">
+              <div class="form-group">
+                Available Balance : {{this.cust.walletAmt|currency:'INR'}}
+                <hr>
+                <label><b>Add Money to wallet : </b></label>
+                <input type="text" placeholder="₹ Amount" class="form-control" formControlName="amount"
+                  [ngClass]="{ 'is-invalid': submitted && this.addMoneyForm.controls.amount.errors }">
+                <div
+                  *ngIf="submitted && this.addMoneyForm.controls.amount.errors && (this.addMoneyForm.controls.amount.dirty || this.addMoneyForm.controls.amount.touched)"
+                  class="invalid-feedback">
+                  <div *ngIf="this.addMoneyForm.controls.amount.errors.required">Amount is Required</div>
+                  <div *ngIf="this.addMoneyForm.controls.amount.errors.min">Minimum amount must be ₹1</div>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Proceed to Add Money</button>
+            </form>
+
+            <!-- End of add money form -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

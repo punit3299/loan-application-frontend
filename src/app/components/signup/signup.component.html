@@ -1,0 +1,193 @@
+<!-- Display this In case of Errors (Service Unavailable) -->
+<span *ngIf="errors;then cond1 else cond2"></span>
+<ng-template #cond1>
+    <div class="ml-3">
+        <h1 class="pt-5">{{errors}}</h1>
+        <hr>
+        <b style="color: black;">The server cannot handle the request (because it is overloaded or down for
+            maintenance). Please try again
+            later.</b>
+    </div>
+</ng-template>
+<!--  -->
+
+<!-- Dispalyig SignUp Page  -->
+
+<ng-template #cond2>
+
+    <header class="border">
+        <app-navbar></app-navbar>
+    </header>
+
+    <div class="row container-fluid no-gutters animated pt-5" style="padding: 20px;font-family: Josefin Sans;">
+        <div class="col-lg-6 col-md-8 col-sm-12 col-12 text-center mx-auto">
+
+            <div class="card work">
+                <div class="card-body">
+                    <div class="circle shadow"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
+                    <h3 class="card-title outline">
+                        <b>Create an Account Here</b>
+                    </h3>
+                    <p><b style="color:red">*</b> All fields are mandatory</p>
+                     
+                    <!-- Reactive Form -->
+                    <form [formGroup]="registerForm" (ngSubmit)="verifySignup()">
+                        <div class="form-group row">
+ 
+                            <!-- First Name -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="First Name" formControlName="fname"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.fname.errors}" />
+                                <div *ngIf="submitted && f.fname.errors && (f.fname.dirty || f.fname.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.fname.errors.required">First Name is required</div>
+                                    <div *ngIf="f.fname.errors.pattern">First Name must begin with Capital letter</div>
+                                </div>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="Last Name" formControlName="lname"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.lname.errors  }" />
+                                <div *ngIf="submitted && f.lname.errors  && (f.lname.dirty || f.lname.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.lname.errors.required">Last Name is required</div>
+                                    <div *ngIf="f.lname.errors.pattern">Last Name must begin with Capital letter</div>
+                                </div> 
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <!-- Gender -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="Male/Female" formControlName="gender"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" />
+                                <div *ngIf="submitted && f.gender.errors && (f.gender.dirty || f.gender.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.gender.errors.required">Gender is required</div>
+                                    <div *ngIf="f.gender.errors.pattern">Invalid Gender</div>
+                                </div>
+                            </div>
+
+                            <!-- Phone number -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="Phone Number" formControlName="phone"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                                <div *ngIf="submitted && f.phone.errors && (f.phone.dirty || f.phone.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                                    <div *ngIf="f.phone.errors.pattern">Invalid Phone no</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <!-- Email Id -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="Email Id" formControlName="email"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors}" />
+                                <div *ngIf="submitted && f.email.errors && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-lg-6 py-1">
+                                <input type="password" placeholder="Password" formControlName="password"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors && (f.password.dirty || f.password.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <!-- Confirm Password -->
+                            <div class="col-lg-6 py-1">
+                                <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                                <div *ngIf="submitted && f.confirmPassword.errors && (f.confirmPassword.dirty || f.confirmPassword.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                </div>
+                                <div *ngIf="mustMatch" style="color:red;font-size: 12px;">Passwords must match</div>
+                            </div>
+
+                            <!-- Salary -->
+                            <div class="col-lg-6 py-1">
+                                <input type="number" placeholder="Salary (Greater than ₹5000)" formControlName="salary"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.salary.errors}" />
+                                <div *ngIf="submitted && f.salary.errors && (f.salary.dirty || f.salary.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.salary.errors.required">Salary is required</div>
+                                    <div *ngIf="f.salary.errors.min">Salary must be greater than ₹5000</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <!-- Adhaar -->
+                            <div class="col-lg-6 py-1">
+                                <input type="number" placeholder="Adhaar Number" formControlName="adhaar"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.adhaar.errors}" />
+                                <div *ngIf="submitted && f.adhaar.errors && (f.adhaar.dirty || f.adhaar.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.adhaar.errors.required">Adhaar is required</div>
+                                    <div *ngIf="f.adhaar.errors.pattern">Invalid Adhaar Format</div>
+                                    <!-- Adhaar no must be of 12 digits -->
+                                </div> 
+                            </div>
+
+                            <!-- Pan -->
+                            <div class="col-lg-6 py-1">
+                                <input type="text" placeholder="PAN Number" formControlName="pan"
+                                    class="form-control mx-auto"
+                                    [ngClass]="{ 'is-invalid': submitted && f.pan.errors}" />
+                                <div *ngIf="submitted && f.pan.errors && (f.pan.dirty || f.pan.touched)" class="invalid-feedback">
+                                    <div *ngIf="f.pan.errors.required">PAN is required</div>
+                                    <div *ngIf="f.pan.errors.pattern">Invalid PAN Format</div>
+                                    <!-- PAN Card - First 5 digits is Capital, next 4 is numeric and Last 1 digit is Capital -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Invalid SignUp Credentials -->
+
+                        <div *ngIf="invalidSignup">
+                            <div class="alert alert-danger" role="alert">
+                                Account Already Exists
+                            </div>
+                        </div>
+
+                        <!--  -->
+
+                        <div class="form-group pt-2">
+                            <button class="btn btn-success" type="submit">Register</button> &nbsp;
+                            <button class="btn btn-danger" type="reset">Cancel</button>
+                        </div>
+
+
+                    </form>
+                    <!-- End of Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer pt-4" style="height: 45px;bottom:0;width: 100%;">
+        <app-footer></app-footer>
+    </div>
+    <!-- Footer -->
+
+</ng-template>
+<!-- End of Signup page -->

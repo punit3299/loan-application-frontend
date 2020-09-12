@@ -1,0 +1,32 @@
+<div class="row mx-5 no-gutters animated">
+    <div class="col-lg-4 col-md-6">
+        <div class="card-counter success">
+            <i class="fa fa-database"></i>
+            <span class="count-numbers">{{customerService.walletBalance|currency:'INR'}}</span>
+            <span class="count-name">Wallet Balance : </span>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="card-counter danger">
+            <i class="fa fa-ticket"></i>
+            <span class="count-numbers">{{customerService.loansTaken}}</span>
+            <span class="count-name">Loans Taken : </span>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card-counter primary">
+            <i class="fa fa-code-fork"></i>
+            <span class="count-numbers">{{customerService.transCount}}</span>
+            <span class="count-name">Transactions occurred : </span>
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+<hr>
+
+<router-outlet></router-outlet>

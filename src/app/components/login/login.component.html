@@ -1,0 +1,101 @@
+<!-- Display this In case of Errors like (Service Unavailable) -->
+<span *ngIf="errors;then cond1 else cond2"></span>
+<ng-template #cond1>
+    <div class="ml-3">
+        <h1 class="pt-5">{{errors}}</h1>
+        <hr>
+        <b>The server cannot handle the request (because it is overloaded or down for maintenance). Please try again
+            later.</b>
+    </div>
+</ng-template>
+<!--  -->
+
+<!-- Dispalyig Login Page  -->
+<ng-template #cond2>
+
+    <header class="border">
+        <app-navbar></app-navbar>
+    </header>
+
+    <div class="row container-fluid no-gutters animated my-4 pt-4" style="font-family: Josefin Sans;">
+        <div class="col-xl-4 col-lg-6 col-md-8 col-12 mx-auto text-center">
+
+            <div class="card work mx-auto">
+                <div class="card-body">
+                    <div class="circle shadow"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
+                    <h4 class="card-title outline">
+                        <b>User Login</b> 
+                    </h4>
+
+                    <!-- Reactive Form -->
+
+                    <form [formGroup]="loginForm" (ngSubmit)="verifyLogin()">
+
+                        <!-- email -->
+
+                        <div class="form-group pt-2">
+                            <input type="text" placeholder=" &#xf06e;  Email ID" formControlName="email"
+                                class="form-control w-75 mx-auto"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+
+                        <!-- end of email -->
+
+                        <!-- password -->
+
+                        <div class="form-group">
+                            <input type="password" placeholder=" &#xf023;  Password" formControlName="password"
+                                class="form-control w-75 mx-auto"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors && (f.password.dirty || f.password.touched)" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+
+                        <!-- end of password -->
+
+                        <!-- submit buttons -->
+
+                        <div class="mt-4">
+                            <button class="btn btn-success w-25" type="submit">Login</button> &nbsp;
+                        </div>
+
+                        <!-- end of submit buttons  -->
+
+                        <br>
+                        
+                        <!-- Invalid Login Credentials -->
+
+                        <div *ngIf="invalidLogin">
+                            <div class="alert alert-danger" role="alert">
+                                Invalid Email or Password
+                            </div>
+                        </div>
+
+                        <!--  -->
+                        
+
+                        <h6>Don't have an account ?
+                            <a routerLink="/signup"> Register Here </a>
+                        </h6>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+ 
+    <!-- Footer -->
+    <div class="footer pt-1" style="height: 45px;bottom:0;width: 100%;">
+        <app-footer></app-footer>
+    </div>
+    <!-- End of Footer -->
+
+</ng-template> 
+
+<!-- End of Login page -->

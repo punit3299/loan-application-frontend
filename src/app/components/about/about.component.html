@@ -1,0 +1,107 @@
+<!-- Header of Home Page -->
+<header>
+    <app-navbar></app-navbar>
+</header>
+<!-- End of Header -->
+
+<span style="font-family: Josefin Sans">
+    <div class="row container-fluid animated mx-auto">
+        <div class="col-lg-6 py-4">
+            <img src="assets/images/aboutus.jpg" class="img-fluid">
+        </div>
+        <div class="col-lg-6 py-3">
+            <h3 class="text-center"><b>Who We Are?</b></h3>
+            <p class="pt-2">Founded in 2020 by Punit Raj, Our Company is the leading lender to
+                digital India. We created it to handle all loan related transaction in a very accurate and convenient
+                way.
+                It is
+                very helpful for those banking staffs who are in the charge of loan management, it provides a very
+                reliable
+                and convenient form for every loan and EMI related transaction and their related details. It is also a
+                very
+                user friendly and understandable form of storing customer’s details & transaction information.
+                <br>
+                Powered by rigorous innovation and technological advancements,We passionately serve our customers with
+                our
+                cutting-edge financial service to help them.
+            </p>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Contact form -->
+    <div class="row container-fluid animated mx-auto">
+        <div class="col-lg-6 text-center">
+
+            <h3 class="pt-5"><b>Feel free to Contact Us</b></h3>
+
+            <div class="pt-4">
+
+                <form [formGroup]="contactForm" (ngSubmit)="contact()">
+
+                    <!-- name -->
+
+                    <div class="form-group pt-2">
+                        <input type="text" placeholder="Name" formControlName="name" class="form-control w-75 mx-auto"
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                        <div *ngIf="submitted && f.name.errors && (f.name.dirty || f.name.touched)"
+                            class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Name is required</div>
+                            <div *ngIf="f.name.errors.pattern">Name must starts with Capital letter</div>
+                        </div>
+                    </div>
+
+                    <!-- end of name -->
+
+                    <!-- email -->
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" formControlName="email" class="form-control w-75 mx-auto"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors && (f.email.dirty || f.email.touched)"
+                            class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+
+                    <!-- end of email-->
+                    <!-- message -->
+
+                    <div class="form-group">
+                        <textarea placeholder="Message" formControlName="message" class="form-control w-75 mx-auto"
+                            [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                        <div *ngIf="submitted && f.message.errors && (f.message.dirty || f.message.touched)"
+                            class="invalid-feedback">
+                            <div *ngIf="f.message.errors.required">Message is required</div>
+                        </div>
+                    </div>
+
+                    <!-- end of message -->
+
+                    <!-- submit buttons -->
+
+                    <div class="mt-4">
+                        <button class="btn btn-warning w-25" type="submit">Contact</button> &nbsp;
+                    </div>
+
+                    <!-- end of submit buttons  -->
+
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <img src="assets/images/contact.png" class="img-fluid">
+        </div>
+    </div>
+
+
+</span>
+<!--Footer of HomePage -->
+
+<div class="footer pt-1" style="height: 48px;bottom:0;width: 100%;">
+    <app-footer></app-footer>
+</div>
+
+<!-- End of Footer -->

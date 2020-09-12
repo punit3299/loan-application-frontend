@@ -1,0 +1,59 @@
+<div class="row container-fluid mb-4 mx-auto animated">
+    <div class="col-lg-10 offset-lg-1 mt-2 ">
+
+        <!-- Loan Applied Status -->
+        <div *ngIf="message" class="alert alert-success text-center" role="alert">
+            {{message}}
+        </div>
+        <h3 class="text-center"><b>Apply Loan Here</b></h3>
+
+        <!-- Apply Loan Form -->
+        <form [formGroup]="applyLoanForm" (ngSubmit)="applyLoan()">
+            <div class="form-group row pt-3 ">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <input type="number" placeholder="Loan Amount (Greater than ₹5000)"
+                        formControlName="loanAmt" class="form-control mx-auto"
+                        [ngClass]="{ 'is-invalid': submitted && f.loanAmt.errors }" />
+                    <div *ngIf="submitted && f.loanAmt.errors && (f.loanAmt.dirty || f.loanAmt.touched)"
+                        class="invalid-feedback">
+                        <div *ngIf="f.loanAmt.errors.required">Loan Amount is required</div>
+                        <div *ngIf="f.loanAmt.errors.min">Loan Amount must be greater than {{5000|currency:'INR'}}</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row">
+
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <input type="text" placeholder="Personal/Home/Car/Others" formControlName="loanType"
+                        class="form-control  mx-auto"
+                        [ngClass]="{ 'is-invalid': submitted && f.loanType.errors }" />
+                    <div *ngIf="submitted && f.loanType.errors && (f.loanType.dirty || f.loanType.touched)"
+                        class="invalid-feedback">
+                        <div *ngIf="f.loanType.errors.required">Loan Type is required</div>
+                        <div *ngIf="f.loanType.errors.pattern">Invalid Loan Type</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row pb-3">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <input type="number" placeholder="Loan Duration (In Years)" formControlName="duration"
+                        class="form-control  mx-auto"
+                        [ngClass]="{ 'is-invalid': submitted && f.duration.errors }" />
+                    <div *ngIf="submitted && f.duration.errors && (f.duration.dirty || f.duration.touched)"
+                        class="invalid-feedback">
+                        <div *ngIf="f.duration.errors.required">Loan Duration is required</div>
+                        <div *ngIf="f.duration.errors.min">Loan Duration must be greater than 0</div>
+                        <div *ngIf="f.duration.errors.max">Loan Duration must be smaller than 20</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-success w-25" type="submit">Apply</button> &nbsp;
+            </div>
+        </form>
+
+        <!-- End of Loan form -->
+    </div>
+</div>

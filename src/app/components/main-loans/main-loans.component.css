@@ -1,0 +1,24 @@
+ /* animation - float up all elements */
+
+ .animated{
+    animation: transitionIn 0.75s;
+  }
+  @keyframes transitionIn{
+    from{
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to{
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .timer {
+    animation: cssAnimation 0s 5s forwards;
+    visibility: visible;
+  }
+  
+  @keyframes cssAnimation {
+    to   { visibility: hidden; }
+  }
