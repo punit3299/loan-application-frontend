@@ -6,6 +6,6 @@ Frontend deployed on Firebase and Backend deployed on Heroku.
 
 Technology Stack - HTML, CSS, Bootstrap 4, Angular 6, Spring MVC, Spring Boot, JPA - Hibernate, Oracle 11g
 
-Website Link : https://punit3299.github.io/online-loan-application/
+Website Link : https://online-loan-application-e0db7.web.app/
 
 
